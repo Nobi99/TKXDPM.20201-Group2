@@ -2,10 +2,11 @@
 
 # Lab00 - Complete SRS
 ## Tasks
-	- Complete use case specifications for View Bike Information
-	- Complete use case specifications for Rent Bike
-	- Complete use case specifications for Return Bike
-	- Complete SRS
+	- Complete use case specifications for View Bike Information: Nguyễn Đình Chiến.
+	- Complete use case specifications for Rent Bike: Bùi Tuấn Anh.
+	- Complete use case specifications for Return Bike: Hoàng Vân Anh.
+	- Complete SRS: Trần Thế Chiến.
+	- Draw Activity diagrams (Rent Bike and Return Bike): Trần Thế Chiến.
 ## Contributions
 	- Bùi Tuấn Anh
 	- Hoàng Vân Anh
