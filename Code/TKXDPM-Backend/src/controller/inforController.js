@@ -1,5 +1,6 @@
 import { BikeModel, StationModel } from '../model/model';
 import connection from '../config/database.config';
+
 // import StationModel from '../model/station.model';
 
 /**
@@ -55,6 +56,17 @@ const getStation = async (req, res) => {
 
 }
 
+const getAvailableStation = async (req, res) => {
+    try {
+        const kq = await StationModel.getAvailableStation();
+        res.send({ data: kq, status: 200 });
+
+    }
+    catch (err) {
+        console.log(err);
+    }
+}
+
 
 
 const BikeController = {
@@ -64,7 +76,8 @@ const BikeController = {
 
 const StationController = {
     getAllStation,
-    getStation
+    getStation,
+    getAvailableStation
 }
 
 export {

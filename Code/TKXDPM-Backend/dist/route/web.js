@@ -23,6 +23,7 @@ var initRouter = function initRouter(app) {
   router.get('/api/infor/bike', _inforController.BikeController.getBike);
   router.get('/api/infor/all-station', _inforController.StationController.getAllStation);
   router.get('/api/infor/station', _inforController.StationController.getStation);
+  router.get('/api/infor/get-available-station', _inforController.StationController.getAvailableStation);
   app.use('/', router);
 };
 

@@ -12,6 +12,8 @@ var _bike = _interopRequireDefault(require("./model/bike.model"));
 
 var _cors = _interopRequireDefault(require("cors"));
 
+var _crypto = _interopRequireDefault(require("crypto"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 var express = require('express');

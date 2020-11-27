@@ -165,6 +165,44 @@ var getStation = /*#__PURE__*/function () {
   };
 }();
 
+var getAvailableStation = /*#__PURE__*/function () {
+  var _ref5 = (0, _bluebird.coroutine)( /*#__PURE__*/regeneratorRuntime.mark(function _callee5(req, res) {
+    var kq;
+    return regeneratorRuntime.wrap(function _callee5$(_context5) {
+      while (1) {
+        switch (_context5.prev = _context5.next) {
+          case 0:
+            _context5.prev = 0;
+            _context5.next = 3;
+            return _model.StationModel.getAvailableStation();
+
+          case 3:
+            kq = _context5.sent;
+            res.send({
+              data: kq,
+              status: 200
+            });
+            _context5.next = 10;
+            break;
+
+          case 7:
+            _context5.prev = 7;
+            _context5.t0 = _context5["catch"](0);
+            console.log(_context5.t0);
+
+          case 10:
+          case "end":
+            return _context5.stop();
+        }
+      }
+    }, _callee5, null, [[0, 7]]);
+  }));
+
+  return function getAvailableStation(_x9, _x10) {
+    return _ref5.apply(this, arguments);
+  };
+}();
+
 var BikeController = {
   getAllBike: getAllBike,
   getBike: getBike
@@ -172,6 +210,7 @@ var BikeController = {
 exports.BikeController = BikeController;
 var StationController = {
   getAllStation: getAllStation,
-  getStation: getStation
+  getStation: getStation,
+  getAvailableStation: getAvailableStation
 };
 exports.StationController = StationController;

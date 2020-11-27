@@ -30,9 +30,20 @@ const getStationById = (id) => {
 
 }
 
+const getAvailableStation = () => {
+    return new Promise((resolve, reject) => {
+        connection.query("SELECT * FROM station where empty_slot > 0", (err, result) => {
+            if (err) throw err;
+            else resolve(result);
+        })
+    })
+
+}
+
 const StationModel = {
     getAllStation,
-    getStationById
+    getStationById,
+    getAvailableStation
 }
 
 export default StationModel;

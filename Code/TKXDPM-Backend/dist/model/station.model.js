@@ -40,9 +40,18 @@ var getStationById = function getStationById(id) {
   });
 };
 
+var getAvailableStation = function getAvailableStation() {
+  return new Promise(function (resolve, reject) {
+    _database["default"].query("SELECT * FROM station where empty_slot > 0", function (err, result) {
+      if (err) throw err;else resolve(result);
+    });
+  });
+};
+
 var StationModel = {
   getAllStation: getAllStation,
-  getStationById: getStationById
+  getStationById: getStationById,
+  getAvailableStation: getAvailableStation
 };
 var _default = StationModel;
 exports["default"] = _default;
