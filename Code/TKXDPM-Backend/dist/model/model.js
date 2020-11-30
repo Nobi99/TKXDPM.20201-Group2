@@ -15,9 +15,17 @@ Object.defineProperty(exports, "StationModel", {
     return _station["default"];
   }
 });
+Object.defineProperty(exports, "TransactionModel", {
+  enumerable: true,
+  get: function get() {
+    return _transaction["default"];
+  }
+});
 
 var _bike = _interopRequireDefault(require("./bike.model"));
 
 var _station = _interopRequireDefault(require("./station.model"));
+
+var _transaction = _interopRequireDefault(require("./transaction.model"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }

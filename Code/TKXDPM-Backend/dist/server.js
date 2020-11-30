@@ -31,7 +31,11 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 app.use(bodyParser.json());
-(0, _web["default"])(app);
+(0, _web["default"])(app); // connection.query(createTransactionTableSQL, (err, result) => {
+//     if (err) throw err;
+//     else console.log("ok");
+// })
+
 app.listen(process.env.PORT, function () {
   console.log("Chiến is running app");
 });

@@ -15,6 +15,12 @@ Object.defineProperty(exports, "createBikeTableSQL", {
     return _bike["default"];
   }
 });
+Object.defineProperty(exports, "createTransactionTableSQL", {
+  enumerable: true,
+  get: function get() {
+    return _transaction["default"];
+  }
+});
 Object.defineProperty(exports, "fakeBike", {
   enumerable: true,
   get: function get() {
@@ -25,6 +31,8 @@ Object.defineProperty(exports, "fakeBike", {
 var _station = _interopRequireDefault(require("./station.schema"));
 
 var _bike = _interopRequireDefault(require("./bike.schema"));
+
+var _transaction = _interopRequireDefault(require("./transaction.schema"));
 
 var _fake = _interopRequireDefault(require("./fake"));
 

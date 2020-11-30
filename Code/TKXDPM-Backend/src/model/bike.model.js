@@ -2,7 +2,8 @@ import connection from '../config/database.config';
 // import Model from './model';
 
 /**
- * 
+ * @param {Number} station_id 
+ * @returns {promise} array object
  */
 const getAllBike = (station_id) => {
     return new Promise((resolve, reject) => {

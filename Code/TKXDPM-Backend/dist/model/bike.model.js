@@ -16,7 +16,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "d
 // import Model from './model';
 
 /**
- * 
+ * @param {Number} station_id 
+ * @returns {promise} array object
  */
 var getAllBike = function getAllBike(station_id) {
   return new Promise(function (resolve, reject) {

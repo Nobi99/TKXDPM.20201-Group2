@@ -27,7 +27,6 @@ const getBike = async (req, res) => {
     console.log("Sending a Bike Object to Client");
     const kq = await BikeModel.getBikeById(bikeId);
     res.send({ data: kq, status: 200 });
-
 }
 
 /**
@@ -39,7 +38,6 @@ const getAllStation = async (req, res) => {
     console.log("Sending All Station Object to Client");
     const kq = await StationModel.getAllStation();
     res.send({ data: kq, status: 200 });
-
 }
 
 
@@ -60,7 +58,6 @@ const getAvailableStation = async (req, res) => {
     try {
         const kq = await StationModel.getAvailableStation();
         res.send({ data: kq, status: 200 });
-
     }
     catch (err) {
         console.log(err);

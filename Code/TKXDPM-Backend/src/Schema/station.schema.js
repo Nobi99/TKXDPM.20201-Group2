@@ -1,5 +1,6 @@
 
 
+
 const Station = {
     id: 'station_id INT AUTO_INCREMENT PRIMARY KEY',
     name: 'name VARCHAR(255) NOT NULL',
@@ -15,4 +16,5 @@ let createStationTableSQL =
     `CREATE TABLE station (${Station.id}, ${Station.name}, ${Station.address}, ${Station.bikeNumber}, ${Station.emptySlot}, ${Station.area}, ${Station.distance}, ${Station.time})`;
 
 
-export default createStationTableSQL;    
+export default createStationTableSQL;
+
