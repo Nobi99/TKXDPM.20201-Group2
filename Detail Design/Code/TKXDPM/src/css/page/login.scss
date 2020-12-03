@@ -1,0 +1,205 @@
+:root {
+  --pd-left-form: 25px;
+  --form-input-height: 35px;
+  --form-input-mr-bt: 80px;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+.flex {
+  display: flex;
+}
+.ps-rl {
+  position: relative;
+}
+.err {
+  text-align: left;
+}
+
+.form-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-image: url(https://inlonggia.com/wp-content/uploads/Background-dep-vector.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.login__form {
+  padding: 50px;
+  text-align: center;
+  border-radius: 5px;
+  background-color: white;
+  font-family: 'Times New Roman', Times, serif;
+  height: 97%;
+}
+
+.login-header {
+  font-size: 30px;
+  margin-bottom: 40px;
+}
+
+.login__form .form__input {
+  display: block;
+  position: relative;
+  width: 300px;
+  height: var(--form-input-height);
+  border: none;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.3);
+  font-size: 18px;
+  padding-left: calc(var(--pd-left-form) + 5px);
+}
+
+.login__form button[type="submit"] {
+  width: 100%;
+  font-size: 20px;
+  margin: 30px 0;
+}
+
+.login__form .input__icon {
+  display: block;
+  position: absolute;
+  color: black;
+  top: 6px;
+  left: 7px;
+  z-index: 10;
+}
+.toggle-password {
+  position: absolute;
+  top: 8px;
+  right: 5px;
+  z-index: 10;
+  display: block;
+}
+
+.form__input:focus {
+  outline: none;
+}
+
+.input__focus {
+  position: relative;
+  display: block;
+  left: 5px;
+  width: 100%;
+  font-size: 18px;
+}
+
+.input__focus::before {
+  width: 100%;
+  height: var(--form-input-height);
+  content: attr(data-name);
+  position: absolute;
+  top: -28px;
+  left: var(--pd-left-form);
+  color: rgba(0, 0, 0, 0.4);
+  font-size: 16px;
+  transition: all cubic-bezier(0.075, 0.82, 0.165, 1) 1s;
+  pointer-events: none;
+  text-align: left;
+}
+.has-value + .input__focus::before {
+  top: -60px;
+  color: #000;
+  left: 0;
+}
+.form__input:focus + .input__focus::before {
+  top: -60px;
+  color: #000;
+  left: 0;
+  transition: all cubic-bezier(0.075, 0.82, 0.165, 1) 1s;
+}
+
+.social__link {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  line-height: 50px;
+  font-size: 25px;
+}
+
+.social__link:first-child {
+  margin-right: 15px;
+}
+
+.social__link:hover {
+  background-color: #333333;
+}
+
+.social__link > i {
+  color: white;
+}
+
+.icon--fb {
+  background-color: #3b5998;
+}
+
+.icon--gg {
+  background-color: #ea4335;
+}
+.register {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.register > p {
+  margin: 0 5px;
+  color: #ccc;
+}
+.divider {
+  flex: 1;
+  height: 2px;
+  background-color: rgba(153, 149, 149, 0.4);
+  margin: 20px 0;
+}
+
+.btn--register {
+  color: white !important;
+  padding: 10px 30px;
+  font-size: 16px;
+}
+/*--------------------------------------------------------*/
+.fp-swapper {
+  font-family: 'Times New Roman', Times, serif;
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.2);
+  .fp-form {
+    background-color: #fff;
+    padding: 30px;
+    width: 500px;
+    height: fit-content;
+    border-radius: 5px;
+    position: relative;
+    &__input {
+      height: 100px;
+    }
+  }
+
+  .fp-form > p {
+    font-size: 20px;
+    font-weight: 600;
+  }
+
+  .btn--submit {
+    text-align: center;
+  }
+
+  .btn--close {
+    position: absolute;
+    top: 12px;
+    right: 16px;
+    font-size: 20px;
+    cursor: pointer;
+  }
+}
