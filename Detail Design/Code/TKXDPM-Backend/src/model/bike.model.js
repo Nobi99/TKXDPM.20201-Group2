@@ -30,17 +30,24 @@ const getBikeById = (id) => {
 }
 
 /**
- * 
- * @param {*} data 
+ * Update bike when rent bike and return bike
+ * @param {*}  stationId,
+ * @param {*} bikeId Bike ID to find bike
  * @returns Promise
  */
 
-const updateBike = (data) => {
-    let query = '';
-    if (data.stationId != -1) {
-        query = `UPDATE bike SET isRented = ${data.isRented}, station_id = ${data.stationId} WHERE bike_id = ${data.id}`
-    }
-    else query = `UPDATE bike SET isRented = ${data.isRented} WHERE bike_id = ${data.id}`
+const returnBike = ({ stationId, bikeId }) => {
+    let query = `UPDATE bike SET isRented = 0, station_id = ${stationId} WHERE bike_id = ${bikeId}`;
+    return new Promise((resolve, reject) => {
+        connection.query(query, (err, result) => {
+            if (err) throw err;
+            else resolve(result);
+        });
+    });
+}
+
+const hiringBike = (bikeId) => {
+    let query = `UPDATE bike SET isRented = 1 WHERE bike_id = ${bikeId}`;
     return new Promise((resolve, reject) => {
         connection.query(query, (err, result) => {
             if (err) throw err;
@@ -53,7 +60,8 @@ const updateBike = (data) => {
 const BikeModel = {
     getAllBike,
     getBikeById,
-    updateBike
+    returnBike,
+    hiringBike
 }
 
 export default BikeModel;

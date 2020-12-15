@@ -28,9 +28,19 @@ const addTransaction = async (req, res) => {
 
 const updateTransaction = async (req, res) => {
     console.log(req.body.transactionInfor);
-    // const updateBike = await BikeModel.updateBike();
-    res.send({ data: kq, status: 200 });
-    const kq = await TransactionModel.updateTransaction(req.body.transactionInfor);
+    const updateBike = {
+        bikeId: req.body.transactionInfor.bikeId,
+        stationId: req.body.transactionInfor.stationId,
+    }
+    try {
+        BikeModel.returnBike(updateBike).then(async () => {
+            const kq = await TransactionModel.updateTransaction(req.body.transactionInfor);
+            res.send({ data: kq, status: 200 });
+        });
+    }
+    catch (err) {
+        res.send({ msg: "Fail to finish!! Try again" });
+    }
 }
 
 export {

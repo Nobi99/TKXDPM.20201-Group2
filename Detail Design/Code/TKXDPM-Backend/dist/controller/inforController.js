@@ -164,6 +164,12 @@ var getStation = /*#__PURE__*/function () {
     return _ref4.apply(this, arguments);
   };
 }();
+/**
+ * Get Stations have empty slot to return bike
+ * @param {*} req 
+ * @param {*} res 
+ */
+
 
 var getAvailableStation = /*#__PURE__*/function () {
   var _ref5 = (0, _bluebird.coroutine)( /*#__PURE__*/regeneratorRuntime.mark(function _callee5(req, res) {

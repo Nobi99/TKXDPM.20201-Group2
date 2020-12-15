@@ -40,14 +40,27 @@ var getBikeById = function getBikeById(id) {
     });
   });
 };
+/**
+ * Update bike when rent bike and return bike
+ * @param {*}  stationId,
+ * @param {*} bikeId Bike ID to find bike
+ * @returns Promise
+ */
 
-var updateBike = function updateBike(data) {
-  var query = '';
 
-  if (data.stationId != -1) {
-    query = "UPDATE bike SET isRented = " + data.isRented + ", station_id = " + data.stationId + " WHERE bike_id = " + data.id;
-  } else query = "UPDATE bike SET isRented = " + data.isRented + " WHERE bike_id = " + data.id;
+var returnBike = function returnBike(_ref) {
+  var stationId = _ref.stationId,
+      bikeId = _ref.bikeId;
+  var query = "UPDATE bike SET isRented = 0, station_id = " + stationId + " WHERE bike_id = " + bikeId;
+  return new Promise(function (resolve, reject) {
+    _database["default"].query(query, function (err, result) {
+      if (err) throw err;else resolve(result);
+    });
+  });
+};
 
+var hiringBike = function hiringBike(bikeId) {
+  var query = "UPDATE bike SET isRented = 1 WHERE bike_id = " + bikeId;
   return new Promise(function (resolve, reject) {
     _database["default"].query(query, function (err, result) {
       if (err) throw err;else resolve(result);
@@ -58,7 +71,8 @@ var updateBike = function updateBike(data) {
 var BikeModel = {
   getAllBike: getAllBike,
   getBikeById: getBikeById,
-  updateBike: updateBike
+  returnBike: returnBike,
+  hiringBike: hiringBike
 };
 var _default = BikeModel;
 exports["default"] = _default;

@@ -11,6 +11,12 @@ var _bluebird = require("bluebird");
 
 var _model = require("../model/model");
 
+/**
+ * 
+ * @param {*} req 
+ * @param {*} res 
+ * adding Transaction to db
+ */
 var addTransaction = /*#__PURE__*/function () {
   var _ref = (0, _bluebird.coroutine)( /*#__PURE__*/regeneratorRuntime.mark(function _callee(req, res) {
     var transaction, kq;
@@ -49,35 +55,65 @@ var addTransaction = /*#__PURE__*/function () {
     return _ref.apply(this, arguments);
   };
 }();
+/**
+ * 
+ * @param {*} req 
+ * @param {*} res 
+ * update the transaction
+ */
+
 
 exports.addTransaction = addTransaction;
 
 var updateTransaction = /*#__PURE__*/function () {
-  var _ref2 = (0, _bluebird.coroutine)( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(req, res) {
-    var kq;
-    return regeneratorRuntime.wrap(function _callee2$(_context2) {
+  var _ref2 = (0, _bluebird.coroutine)( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(req, res) {
+    var updateBike;
+    return regeneratorRuntime.wrap(function _callee3$(_context3) {
       while (1) {
-        switch (_context2.prev = _context2.next) {
+        switch (_context3.prev = _context3.next) {
           case 0:
-            console.log(req.body.transactionInfor); // const updateBike = await BikeModel.updateBike();
+            console.log(req.body.transactionInfor);
+            updateBike = {
+              bikeId: req.body.transactionInfor.bikeId,
+              stationId: req.body.transactionInfor.stationId
+            };
 
-            res.send({
-              data: kq,
-              status: 200
-            });
-            _context2.next = 4;
-            return _model.TransactionModel.updateTransaction(req.body.transactionInfor);
+            try {
+              _model.BikeModel.returnBike(updateBike).then( /*#__PURE__*/(0, _bluebird.coroutine)( /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
+                var kq;
+                return regeneratorRuntime.wrap(function _callee2$(_context2) {
+                  while (1) {
+                    switch (_context2.prev = _context2.next) {
+                      case 0:
+                        _context2.next = 2;
+                        return _model.TransactionModel.updateTransaction(req.body.transactionInfor);
 
-          case 4:
-            kq = _context2.sent;
-            console.log(kq);
+                      case 2:
+                        kq = _context2.sent;
+                        res.send({
+                          data: kq,
+                          status: 200
+                        });
 
-          case 6:
+                      case 4:
+                      case "end":
+                        return _context2.stop();
+                    }
+                  }
+                }, _callee2);
+              })));
+            } catch (err) {
+              res.send({
+                msg: "Fail to finish!! Try again"
+              });
+            }
+
+          case 3:
           case "end":
-            return _context2.stop();
+            return _context3.stop();
         }
       }
-    }, _callee2);
+    }, _callee3);
   }));
 
   return function updateTransaction(_x3, _x4) {

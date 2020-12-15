@@ -1,5 +1,6 @@
 import axios from "axios";
 import crypto from "crypto";
+import { interbankException } from "../exceptions/exceptions";
 
 let card = {
     cardCode: "118609_group2_2020",
@@ -7,22 +8,6 @@ let card = {
     cvvCode: 546,
     dateExpired: 1125,
 }
-
-// let hashMd5 = {
-//     secretKey: 'B0F8jDFXayo=',
-//     transaction: {
-//         command: "pay",
-//         cardCode: "118609_group2_2020",
-//         owner: "Group 2",
-//         cvvCode: 546,
-//         dateExpired: 1125,
-//         transactionContent: "Pay for hiring bike",
-//         amount: 20000,
-//         createdAt: "2020-11-28 1:56:25"
-//     }
-// }
-
-//B0F8jDFXayo=
 
 let baseUrl = 'https://ecopark-system-api.herokuapp.com';
 
@@ -70,6 +55,15 @@ const payingCommand = async (command, amount, createdAt, content) => {
         hashCode: makeHashCode(transaction)
     }
     const result = await axios.patch(`${baseUrl}/api/card/processTransaction`, body);
+    switch (result.data.errorCode) {
+        case '01': throw new interbankException("");
+        case '02': throw new interbankException("");
+        case '03': throw new interbankException("");
+        case '04': throw new interbankException("");
+        case '05': throw new interbankException("");
+
+        default:
+    }
     return result;
 }
 
@@ -97,7 +91,6 @@ const resetBalance = async () => {
 //     message: "Giao dịch thành công"
 // }
 
-// export default transaction;
 export {
     resetBalance,
     payingCommand

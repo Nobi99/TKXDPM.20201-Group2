@@ -40,10 +40,21 @@ const getAvailableStation = () => {
 
 }
 
+const updateStation = (stationId, emptySlot) => {
+    let query = `UPDATE station SET empty_slot = ${emptySlot} WHERE station_id = ${stationId}`;
+    return new Promise((resolve, reject) => {
+        connection.query(query, (err, result) => {
+            if (err) throw err;
+            else resolve(result);
+        })
+    })
+}
+
 const StationModel = {
     getAllStation,
     getStationById,
-    getAvailableStation
+    getAvailableStation,
+    updateStation
 }
 
 export default StationModel;

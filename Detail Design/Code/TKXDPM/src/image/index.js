@@ -10,6 +10,7 @@ import moneyIcon from '../assets/icon/money.png';
 import bikeImage from '../assets/bike.jpg';
 import barcodeIcon from '../assets/icon/barcodeIcon.png'
 import errorIcon from '../assets/icon/errorIcon.png';
+import loadingGif from '../assets/spinner.gif';
 
 export {
     distanceIcon,
@@ -23,5 +24,6 @@ export {
     moneyIcon,
     barcodeIcon,
     bikeImage,
-    errorIcon
+    errorIcon,
+    loadingGif
 }
