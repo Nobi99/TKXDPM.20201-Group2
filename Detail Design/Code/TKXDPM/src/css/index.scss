@@ -1,7 +1,11 @@
-@import "./page/login.scss";
 @import "_global";
-@import "./component/navbar.scss";
+@import "./component/navbar";
+@import "./component/loader";
 
+/*
+ * import css for page
+*/
+@import "./page/login";
 @import "./page/home";
 @import "./page/listStation";
 @import "./page/listBike";
