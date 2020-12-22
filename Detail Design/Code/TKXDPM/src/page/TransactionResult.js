@@ -1,14 +1,21 @@
 
-import React from 'react';
+import React, { useEffect } from 'react';
+import NotFound from '../component/NotFound'
+import { Link } from 'react-router-dom';
 
 import {
     errorIcon
 } from '../image';
 const TransactionResult = () => {
-    if (localStorage.length !== 0) {
-        var transaction = JSON.parse(localStorage.getItem('transactionResult'));
-        console.log(transaction);
 
+
+    useEffect(() => {
+        return localStorage.removeItem('transactionResult');
+    })
+
+
+    var transaction = JSON.parse(localStorage.getItem('transactionResult'));
+    if (transaction !== null) {
         return (
             <div className="station-container">
                 {/* {
@@ -26,26 +33,27 @@ const TransactionResult = () => {
             </div>
         )
     }
-    else return null;
+    else return <NotFound />;
 }
 const Success = ({ transaction }) => {
+    console.log(transaction);
     return (
-        <div className="transaction-result">
-            <p className="transaction-result-header">
-                Giao dịch thành công!!
-        </p>
-            <div className="transaction-result-body">
-                <div className="transaction-items">
-                    <p><span>Tên khách hàng: </span>{ transaction.username }</p>
-                    <p><span>Mã hóa đơn: </span>NB0100</p>
-                    <p><span>Xe đã sử dụng: </span>{ transaction.bikeId }</p>
-                    <p><span>Tổng thời gian thuê: </span>45p </p>
-                    <p><span>Tiền thuê xe: </span>{ transaction.fee.toLocaleString('en-US', { style: 'currency', currency: 'VND' }) }</p>
+        <>
+            <div className="transaction-result">
+                <p className="transaction-result-header">
+                    Giao dịch thành công!!
+            </p>
+                <div className="transaction-result-body">
+                    <div className="transaction-items">
+                        <p><span>Tên khách hàng: </span>{ transaction.username }</p>
+                        <p><span>Tổng thời gian thuê: </span>45p </p>
+                        <p><span>Tiền thuê xe: </span>{ transaction.fee.toLocaleString('en-US', { style: 'currency', currency: 'VND' }) }</p>
+                    </div>
+                    <p className="thank-sentence">Cảm ơn quý khách đã sử dụng dịch vụ của NobBike.</p>
                 </div>
-                <p className="thank-sentence">Cảm ơn quý khách đã sử dụng dịch vụ của NobBike.</p>
             </div>
-
-        </div>
+            <Link to="/" className="btn-return btn">Home</Link>
+        </>
     )
 }
 
