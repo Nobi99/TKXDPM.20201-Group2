@@ -2,7 +2,7 @@ const Invoice = (props) => {
     const { bike, transaction, returnBike } = props;
     let startTime = new Date(transaction.createdAt).toLocaleString('ja-JP');
     let endTime = new Date(transaction.endAt).toLocaleString('ja-JP');
-    let hiringTime = (transaction.endAt - transaction.createdAt) / 1000;
+    let hiringTime = Math.ceil((transaction.endAt - transaction.createdAt) / 1000);
     console.log(transaction);
     return (
         <div className="invoice-background">
@@ -13,11 +13,11 @@ const Invoice = (props) => {
                         <p>Tên khách hàng: Trần Thế Chiến</p>
                         <p>Start time: { startTime }</p>
                         <p>End time: { endTime }</p>
-                        <p>Hiring time: { hiringTime }</p>
+                        <p>Hiring time: { hiringTime }s</p>
                         <p>Tiền thuê xe: { transaction.fee }</p>
                         <p>Tiền đặt cọc: { bike.bikeDeposit.toLocaleString('en-US', { style: 'currency', currency: 'VND' }) }</p>
-                        <p>Tiền hoàn trả: { -transaction.fee + bike.bikeDeposit } </p>
-                        <p>Bãi xe đã trả xe: { transaction.stationName }</p>
+                        <p>Tiền hoàn trả: { (-transaction.fee + bike.bikeDeposit).toLocaleString('en-US', { style: 'currency', currency: 'VND' }) } </p>
+                        <p>Bãi xe trả xe: { transaction.stationName }</p>
                     </div>
 
                 </div>

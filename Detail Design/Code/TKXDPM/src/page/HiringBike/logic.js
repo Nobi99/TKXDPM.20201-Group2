@@ -1,3 +1,9 @@
+/**
+ * Function caculates the hiring fee when you hire a Bike not using electric
+ * @param {Number} hiringTime 
+ * @returns {Number} fee when hiring Bike
+ */
+
 const caculatorHiringFeeBike = (hiringTime) => {
     console.log("bike");
     if (hiringTime <= 10) {
@@ -10,6 +16,12 @@ const caculatorHiringFeeBike = (hiringTime) => {
         return (Math.ceil(hiringTime - 30) / 15) * 3000 + 10000;
     }
 }
+
+/**
+ * Function caculates the hiring fee when you hire a electrical Bike 
+ * @param {Number} hiringTime 
+ * @returns {Number} Fee when hiring E Bike
+ */
 
 const caculatorHiringFeeEBike = (hiringTime) => {
     console.log("Ebike");

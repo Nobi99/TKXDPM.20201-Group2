@@ -26,7 +26,8 @@ var transactionInfor = {
     fee: 0,
     bikeId: '',
     stationId: '',
-    stationName: ''
+    stationName: '',
+    hiringFee: 0
 }
 const HiringBike = (props) => {
     let { bikeId } = useParams();
@@ -49,15 +50,28 @@ const HiringBike = (props) => {
         getAvailStationFromApi();
     }, []);
 
+
+
+    /**
+     * Get bike what the user choose in previous step by calling the API
+     */
     const getBikeFromApi = useCallback(async () => {
         const queryResult = await getBike(bikeId);
         setBike(queryResult);
     }, [bikeId]);
 
+    /**
+     * Get all stations from API what have empty slots to return bike 
+     */
+
     const getAvailStationFromApi = useCallback(async () => {
         const queryResult = await getAvailableStation();
         setStationList(queryResult);
     }, []);
+
+    /**
+     * Function to run time 
+     */
 
     const runTimer = () => {
         let interval = setInterval(() => {
@@ -75,14 +89,16 @@ const HiringBike = (props) => {
         return interval;
     }
 
+    /**
+     * Paying the deposite and start the timer
+     */
     const hiringBike = () => {
         showLoader();
         const timeNow = new Date();
         transactionInfor.createdAt = Date.now();
-        // const timeInterBankAPI = timeNow.toLocaleDateString('en-CA') + ' ' + timeNow.toLocaleTimeString('ja-JP');
         transactionInfor.timeInterBankAPI = timeNow.toLocaleDateString('en-CA') + ' ' + timeNow.toLocaleTimeString('ja-JP');
         let body = {
-            createdAt: Date.now(),
+            createdAt: transactionInfor.createdAt,
             userId: 1,
             bikeId: bikeId,
             deposite: bike.bikeDeposit,
@@ -101,15 +117,25 @@ const HiringBike = (props) => {
         });
     }
 
+    /**
+     * When user confirm invoice, function will run and process to return bike
+     */
     const returnBike = () => {
+        // show loading icon
         showLoader();
+        // caculating hiring time
         const hiringTime = transactionInfor.endAt - transactionInfor.createdAt;
         var bikeDeposit = bike.bikeDeposit;
-        console.log(bike.bikeType);
+        // bike type == 10 ~ single bikecycle 
         if (bike.bikeType == 10) {
             transactionInfor.fee = caculatorHiringFeeBike(hiringTime / 60000);
         }
         else transactionInfor.fee = caculatorHiringFeeEBike(hiringTime / 60000);
+
+        /**
+         * Determining call refund method or paying method
+         * After that if success -> update the transaction to db and redirect to the success page
+         */
         if (transactionInfor.fee < bikeDeposit) {
             getTransactionInfor("refund", bikeDeposit - transactionInfor.fee).then((result) => {
                 transactionInfor.interbankTransactionIdEnd = result;
@@ -142,18 +168,33 @@ const HiringBike = (props) => {
 
     }
 
-
+    /**
+     * Show Confirmation and get Station data to return bike
+     * @param {*} selectStaId 
+     * @param {*} selectStaName 
+     */
     const getStationData = (selectStaId, selectStaName) => {
         transactionInfor.stationName = selectStaName;
         transactionInfor.stationId = selectStaId;
         setIsFinish(true);
     }
 
+    /**
+     * Show Station List to choose
+     */
     const showStation = () => {
         transactionInfor.endAt = Date.now();
-        setShowDockingList(true);
+        transactionInfor.hiringFee =
+            setShowDockingList(true);
         clearInterval(interv);
     }
+
+    /**
+     * Create Data and send Request to Interbank 
+     * @param {String} command "paying" or "refund"
+     * @param {Number} amount 
+     * @returns {Number} interbank transaction Id
+     */
 
     const getTransactionInfor = async (command, amount) => {
         try {
