@@ -21,9 +21,10 @@ const addTransaction = async (req, res) => {
 
 /**
  * 
+ * update the transaction
  * @param {*} req 
  * @param {*} res 
- * update the transaction
+ * @returns {Object} transaction
  */
 
 const updateTransaction = async (req, res) => {
