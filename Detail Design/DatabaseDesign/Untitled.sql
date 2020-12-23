@@ -42,10 +42,10 @@ CREATE TABLE `User` (
 );
 
 CREATE TABLE `Card` (
-  `card_id` int PRIMARY KEY AUTO_INCREMENT,
-  `user_id` int,
-  `balance` int,
-  `token_hash_code` varchar(255)
+  `card_code` int PRIMARY KEY AUTO_INCREMENT,
+  `owner` int,
+  `cvvCode` int,
+  `dateExpired` int
 );
 
 ALTER TABLE `Bike` ADD FOREIGN KEY (`bike_id`) REFERENCES `Transaction` (`bike_id`);
@@ -54,4 +54,4 @@ ALTER TABLE `Bike` ADD FOREIGN KEY (`station_id`) REFERENCES `Station` (`station
 
 ALTER TABLE `Transaction` ADD FOREIGN KEY (`user_id`) REFERENCES `User` (`user_id`);
 
-ALTER TABLE `Card` ADD FOREIGN KEY (`card_id`) REFERENCES `User` (`user_id`);
+ALTER TABLE `Card` ADD FOREIGN KEY (`owner`) REFERENCES `User` (`user_id`);
