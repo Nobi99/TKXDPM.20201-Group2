@@ -1,0 +1,75 @@
+// global variable
+$ip-background-color: rgba(0, 0, 0, 0.1);
+$avt-background-color: rgba(0, 0, 0, 0.2);
+
+/**
+  * Gradient button color in navbar and station item hover
+*/
+$background-color: #74ebd5;
+$background-image: linear-gradient(90deg, #74ebd5 0%, #9face6 100%);
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Times New Roman", Times, serif;
+}
+
+a,
+a:active,
+a:hover {
+  color: black;
+}
+
+ul li {
+  list-style: none;
+  text-decoration: none;
+}
+input:focus {
+  outline: none;
+}
+
+.flex {
+  display: flex;
+}
+
+.items-center {
+  align-items: center;
+  justify-content: center;
+}
+
+.bd-circle {
+  border-radius: 50%;
+}
+
+.form-input {
+  border-radius: 30px;
+  padding: 6px 15px;
+  border: none;
+  background-color: $ip-background-color;
+}
+.btn {
+  display: inline-block;
+  border-radius: 5px;
+  padding: 5px 10px;
+}
+.btn-return {
+  display: inline-block;
+  font-size: 20px;
+  font-weight: bold;
+  transition: all cubic-bezier(0.165, 0.84, 0.44, 1) 0.5s;
+  padding: 5px 30px;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-bottom: 20px;
+  background-color: #8ec5fc;
+}
+.btn-return:hover {
+  background-color: #8ec5fc;
+  background-image: linear-gradient(62deg, #8ec5fc 0%, #e0c3fc 100%);
+}
+
+p {
+  margin: 0;
+}
