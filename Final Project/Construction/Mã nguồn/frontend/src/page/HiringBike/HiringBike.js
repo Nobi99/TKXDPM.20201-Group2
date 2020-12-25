@@ -27,7 +27,7 @@ var transactionInfor = {
     bikeId: '',
     stationId: '',
     stationName: '',
-    hiringFee: 0
+    hiringTime: {}
 }
 const HiringBike = (props) => {
     let { bikeId } = useParams();
@@ -184,8 +184,9 @@ const HiringBike = (props) => {
      */
     const showStation = () => {
         transactionInfor.endAt = Date.now();
-        transactionInfor.hiringFee =
-            setShowDockingList(true);
+        transactionInfor.hiringTime = time;
+        console.log(time);
+        setShowDockingList(true);
         clearInterval(interv);
     }
 

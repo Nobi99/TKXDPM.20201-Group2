@@ -46,7 +46,7 @@ const Success = ({ transaction }) => {
                 <div className="transaction-result-body">
                     <div className="transaction-items">
                         <p><span>Tên khách hàng: </span>{ transaction.username }</p>
-                        <p><span>Tổng thời gian thuê: </span>45p </p>
+                        <p><span>Tổng thời gian thuê: </span>{ transaction.hiringTime.h }h { transaction.hiringTime.m }p </p>
                         <p><span>Tiền thuê xe: </span>{ transaction.fee.toLocaleString('en-US', { style: 'currency', currency: 'VND' }) }</p>
                     </div>
                     <p className="thank-sentence">Cảm ơn quý khách đã sử dụng dịch vụ của NobBike.</p>
