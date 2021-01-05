@@ -6,7 +6,7 @@ import baseUrl from "./environment";
 const getAllStation = async () => {
     var listStation = [];
     try {
-        const result = await axios.get(`${baseUrl}/infor/all-station`);
+        const result = await axios.get(`${baseUrl}/station/get-all`);
         const resultData = result.data.data;
         console.log(resultData);
         resultData.forEach(station => {
@@ -31,10 +31,10 @@ const getAllStation = async () => {
 
 const getStationById = async (stationId) => {
     let params = {
-        id: stationId
+        stationId: stationId
     }
     try {
-        const result = await axios.get(`${baseUrl}/infor/station`, { params });
+        const result = await axios.get(`${baseUrl}/station/get-station`, { params });
         const resultData = result.data.data[0];
         let station = {
             id: resultData.station_id,
@@ -55,7 +55,7 @@ const getStationById = async (stationId) => {
 const getAvailableStation = async () => {
     var listStation = [];
     try {
-        const result = await axios.get(`${baseUrl}/infor/get-available-station`);
+        const result = await axios.get(`${baseUrl}/station/get-available`);
         const resultData = result.data.data;
         console.log(resultData);
         resultData.forEach(station => {

@@ -8,7 +8,9 @@ import {
   HiringBike,
   Home,
   ListBike,
-  TransactionResult
+  TransactionResult,
+  Login1,
+  Login
 } from './page';
 
 
@@ -25,6 +27,7 @@ function App() {
         <Switch>
           <Route exact path="/" component={ Home } />
           <Route exact path="/docking" component={ ListDockingStation } />
+          <Route exact path="/login" component={ Login1 } />
           <Route path="/get-bike/station-:id" component={ ListBike } />
           <Route path="/get-bike/hiring-bike/:bikeId" component={ HiringBike } />
           <Route exact path="/transaction" component={ TransactionResult } />

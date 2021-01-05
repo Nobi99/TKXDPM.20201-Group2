@@ -10,7 +10,7 @@ import baseUrl from "./environment";
 const getAllBike = async (stationId) => {
     var listBike = [];
     try {
-        const result = await axios.get(`${baseUrl}/infor/all-bike`, { params: { id: stationId } });
+        const result = await axios.get(`${baseUrl}/bike/get-all`, { params: { stationId: stationId } });
         const resultData = result.data.data;
         resultData.forEach(bike => {
             var bikeCode = '';
@@ -44,10 +44,10 @@ const getAllBike = async (stationId) => {
 const getBike = async (bikeId) => {
     let bike;
     let params = {
-        id: bikeId
+        bikeId: bikeId
     }
     try {
-        const result = await axios.get(`${baseUrl}/infor/bike`, { params });
+        const result = await axios.get(`${baseUrl}/bike/get-bike`, { params });
         const resultData = result.data.data[0];
         var bikeCode = '';
         if (resultData.bike_id / 10 >= 1) {

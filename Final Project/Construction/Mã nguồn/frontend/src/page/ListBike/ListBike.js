@@ -19,7 +19,7 @@ const ListBike = () => {
     const [station, setStation] = useState('');
 
     useEffect(() => {
-        // getStationFromApi();
+        getStationFromApi();
         getBikeFromApi();
     }, []);
 
@@ -28,13 +28,12 @@ const ListBike = () => {
     const getBikeFromApi = async () => {
         let queryResult = await getAllBike(id);
         setListBike(queryResult);
-        queryResult = await getStationById(id);
-        setStation(queryResult);
     }
 
-    // const getStationFromApi = async () => {
-
-    // }
+    const getStationFromApi = async () => {
+        let queryResult = await getStationById(id);
+        setStation(queryResult);
+    }
 
     return (
         <div className="station-container">

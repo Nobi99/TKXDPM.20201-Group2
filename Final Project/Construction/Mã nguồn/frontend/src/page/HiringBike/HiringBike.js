@@ -104,9 +104,9 @@ const HiringBike = (props) => {
             deposite: bike.bikeDeposit,
         }
         addTransaction(body).then((result) => {
-            console.log(result.data);
-            if (result.status === 200) {
-                transactionInfor.transactionId = result.data.data.insertId;
+            if (result.status === "OK") {
+                transactionInfor.transactionId = result.data;
+                console.log(transactionInfor.transactionId);
             }
         }).then(async () => {
             const kq = await getTransactionInfor("pay", bike.bikeDeposit);
