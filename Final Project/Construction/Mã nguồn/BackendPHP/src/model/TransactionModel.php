@@ -9,16 +9,6 @@
             parent::__construct("transaction");
         }
 
-        
-
-        public function setFee($fee) {
-            $this->fee = $fee;
-        }
-
-        public function setEndAt($endAt) {
-            $this->endAt = $endAt;
-        }
-
         public function add($username, $userId, $createdAt, $bikeId) {
             $state = 'INSERT INTO transaction (username, bike_id, created_at, user_id) 
                 VALUES ( "'. $username .'", ' . $bikeId .', "'. $createdAt .'" , '. $userId .' )';

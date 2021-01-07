@@ -25,7 +25,7 @@ const getAllBike = async (stationId) => {
                 battery: bike.battery,
                 dockingStationId: bike.station_id,
                 position: bike.position,
-                bikeDeposit: bike.bike_value,
+                bikeDeposit: parseInt(bike.bike_value),
                 isRented: false,
                 bikeType: bike.code
             })
@@ -61,7 +61,7 @@ const getBike = async (bikeId) => {
             battery: resultData.battery,
             dockingStationId: resultData.station_id,
             position: resultData.position,
-            bikeDeposit: resultData.bike_value,
+            bikeDeposit: parseInt(resultData.bike_value),
             isRented: false,
             bikeType: resultData.code
         };

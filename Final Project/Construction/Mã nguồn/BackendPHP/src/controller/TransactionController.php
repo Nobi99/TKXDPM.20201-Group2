@@ -35,7 +35,11 @@
             $fee = $_POST['fee'];
             $transactionId = $_POST['transactionId'];
             $endAt = $_POST['endAt'];
+            $bikeId = $_POST['bikeId'];
+            $stationId = $_POST['stationId'];
             $result = $this->transactionModel->update($fee, $transactionId, $endAt);
+            $bikeModel = new BikeModel();
+            $bikeModel->returnBike($bikeId, $stationId);
             parent::makeFoundedRequest($result);
         }
         else parent::makeNotFoundRequest();

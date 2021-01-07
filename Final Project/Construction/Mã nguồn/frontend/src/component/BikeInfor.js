@@ -29,7 +29,7 @@ const BikeInfor = ({ bike }) => {
             </div>
 
             {
-                bike.battery !== -1 ?
+                bike.battery != -1 ?
                     <div className="item-attr">
                         <img src={ batteryIcon } alt="battery icon" />
                         <p>{ bike.battery }% </p>

@@ -48,8 +48,8 @@ const HiringBike = (props) => {
     useEffect(() => {
         getBikeFromApi();
         getAvailStationFromApi();
+        resetBalance();
     }, []);
-
 
 
     /**
@@ -104,10 +104,8 @@ const HiringBike = (props) => {
             deposite: bike.bikeDeposit,
         }
         addTransaction(body).then((result) => {
-            if (result.status === "OK") {
-                transactionInfor.transactionId = result.data;
-                console.log(transactionInfor.transactionId);
-            }
+            transactionInfor.transactionId = result.data.data;
+            console.log(transactionInfor.transactionId);
         }).then(async () => {
             const kq = await getTransactionInfor("pay", bike.bikeDeposit);
             transactionInfor.interbankTransactionIdStart = kq;
@@ -141,7 +139,7 @@ const HiringBike = (props) => {
                 transactionInfor.interbankTransactionIdEnd = result;
                 console.log(transactionInfor);
             }).then(() => {
-                updateTransaction(transactionInfor).then(result => {
+                updateTransaction(transactionInfor.bikeId, transactionInfor.endAt, transactionInfor.transactionId, transactionInfor.stationId, transactionInfor.fee).then(result => {
                     console.log("Update done");
                 }).then(() => {
                     const localTransaction = JSON.stringify(transactionInfor);
@@ -223,8 +221,8 @@ const HiringBike = (props) => {
                                 <p>Loại xe: { bike.name }</p>
                                 <p>Mã xe: { bike.bikeCode }</p>
                                 <p>Vị trí: { bike.position }</p>
-                                { bike.battery !== -1 ? <p>Pin còn lại: { bike.battery }%</p> : null }
-                                <p>Tiền đặt cọc: <b>{ bike.bikeDeposit.toLocaleString('en-US', { style: 'currency', currency: 'VND' }) }</b></p>
+                                { bike.battery != -1 ? <p>Pin còn lại: { bike.battery }%</p> : null }
+                                <p>Tiền đặt cọc: <b>{ (bike.bikeDeposit).toLocaleString('en-US', { style: 'currency', currency: 'VND' }) }</b></p>
                             </div>
                             <div className="image">
                                 <img src={ bikeImage } alt="bike" />

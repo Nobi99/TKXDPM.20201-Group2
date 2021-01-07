@@ -19,15 +19,26 @@ const addTransaction = async (transactionInfor) => {
     // console.log(formData);
 
     try {
-        return await axios.post(`${baseUrl}/transaction/add`, formData);
+        const kq = await axios.post(`${baseUrl}/transaction/add`, formData);
+        console.log(kq);
+        return kq;
     } catch (err) {
         console.log(err);
     }
 }
 
-const updateTransaction = async (transactionInfor) => {
+const updateTransaction = async (bikeId, endAt, transactionId, stationId, fee) => {
+    const formData = new URLSearchParams();
+
+    formData.append("bikeId", bikeId);
+    formData.append("transactionId", transactionId);
+    formData.append("endAt", endAt);
+    formData.append("stationId", stationId);
+    formData.append("fee", fee);
+
+
     try {
-        const result = await axios.post(`${baseUrl}/transaction/update`, { transactionInfor });
+        const result = await axios.post(`${baseUrl}/transaction/update`, formData);
         console.log(result)
         console.log("update transaction");
     } catch (err) {
